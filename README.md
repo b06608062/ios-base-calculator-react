@@ -9,7 +9,8 @@
 * 2 * 4 = 8
 * 2 / 4 = 0.5
 * **2 - 3 * 4 = -10**
-
+* 2 / 0 = Error
+* 
 ## Run in local
 ```
 git clone https://github.com/b06608062/ios-base-calculator-react.git
