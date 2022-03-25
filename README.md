@@ -19,9 +19,10 @@
 
 ## Run in local
 ```
+1. Download and Install
 git clone https://github.com/b06608062/ios-base-calculator-react.git
 cd ./ios-base-calculator-react
 yarn install
 yarn start
 ```
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
