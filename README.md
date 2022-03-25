@@ -11,10 +11,10 @@
 * **2 - 3 * 4 = -10**
 * 2 / 0 = **Error**
 * log2 = 0.301
-* [MS]: Memory Save
-* [MR]: Memory Recall
-* [AC]: All Clear
-* [Back]
+* **[MS]:** Memory Save
+* **[MR]:** Memory Recall
+* **[AC]:** All Clear
+* **[Back]**
 
 
 ## Run in local
