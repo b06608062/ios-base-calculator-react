@@ -18,8 +18,8 @@
 
 
 ## Run in local
-```
 1. Download and Install
+```
 git clone https://github.com/b06608062/ios-base-calculator-react.git
 cd ./ios-base-calculator-react
 yarn install
