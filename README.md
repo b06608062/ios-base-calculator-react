@@ -10,7 +10,10 @@
 * 2 / 4 = 0.5
 * **2 - 3 * 4 = -10**
 * 2 / 0 = Error
-* 
+* log2 = 0.301
+* **MC:**
+
+
 ## Run in local
 ```
 git clone https://github.com/b06608062/ios-base-calculator-react.git
