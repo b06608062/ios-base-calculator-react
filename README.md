@@ -8,13 +8,13 @@
 * 2 - 4 = -2
 * 2 * 4 = 8
 * 2 / 4 = 0.5
-* **2 - 3 * 4 = -10**
-* 2 / 0 = **Error**
-* log2 = 0.301
-* **[MS]:** Memory Save
-* **[MR]:** Memory Recall
-* **[AC]:** All Clear
-* **[Back]**
+* `2 - 3 * 4 = -10`
+* 2 / 0 = `Error`
+* `log2 = 0.301`
+* `[MS]:` Memory Save
+* `[MR]:` Memory Recall
+* `[AC]:` All Clear
+* `[Back]`
 
 
 ## Run in local
