@@ -17,7 +17,7 @@
 * **[Back]**
 
 ## Run in local
-1. Download and install.
+1. Download and install packages.
 ```
 git clone https://github.com/b06608062/ios-base-calculator-react.git
 cd ./ios-base-calculator-react
