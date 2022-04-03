@@ -14,7 +14,7 @@
 * **MS:** Memory Save
 * **MR:** Memory Recall
 * **AC:** All Clear
-* **Back**
+* **🔙:** Back
 
 ## Run in local
 1. Download and install packages.
