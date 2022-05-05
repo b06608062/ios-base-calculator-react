@@ -125,7 +125,7 @@ const Calculator = () => {
         setStoreNum(screenValue);
     }
 
-    const memoryRecell = () => {
+    const memoryRecall = () => {
         setReset(false);
         setScreenValue(storeNum.toString());
         setMode(0);
@@ -199,7 +199,7 @@ const Calculator = () => {
             <div className="panelWrapper">
                 <div className="row">
                     <button className="gray" onClick={memoryStore}>MS</button>
-                    <button className="gray" onClick={memoryRecell}>MR</button>
+                    <button className="gray" onClick={memoryRecall}>MR</button>
                     <button className="gray" onClick={allClear}>AC</button>
                     <button className="gray" onClick={backBtn}>🔙</button>
                     <button className="yellow OPR" onClick={(e) => multiDiv(e.target.innerHTML)}>÷</button>
