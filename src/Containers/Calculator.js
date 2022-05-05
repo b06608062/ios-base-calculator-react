@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState } from 'react';
 import './Calculator.css';
 import calculate from '../util/calculate';
 
@@ -10,116 +10,108 @@ const Calculator = () => {
     const [mode, setMode] = useState(0);
     const [OPR, setOPR] = useState("");
     const [error, setError] = useState(false);
-    const [reset, setRest] = useState(false);
+    const [reset, setReset] = useState(false);
 
     const typeNum = (value) => {
-        if(screenValue==="0"||mode===1){
+        if (screenValue === "0" || mode === 1 || reset) {
             setScreenValue(value);
-        }else{
-            if(reset){
-                setScreenValue(value);
-            }else{
-                setScreenValue(screenValue + value);
-            }
+        } else {
+            setScreenValue(screenValue + value);
         }
         setMode(0);
-        setRest(false);
+        setReset(false);
     }
 
     const typeDot = () => {
-        setRest(false);
-       let haveDot = false;
-       for(let i=0;i<screenValue.length;i++){
-           if(screenValue[i]==="."){
-               haveDot = true;
-           }
-       }
-       if(!haveDot){
+        setReset(false);
+        let haveDot = false;
+        for (let i = 0; i < screenValue.length; i++) {
+            if (screenValue[i] === ".") {
+                haveDot = true;
+            }
+        }
+       if (!haveDot) {
            setScreenValue(screenValue + ".");
        }
     }
 
     const backBtn = () => {
-        setRest(false);
+        setReset(false);
         setMode(0);
-        if(screenValue.length===1){
+        if (screenValue.length === 1) {
             setScreenValue("0");
-        }else{
-            setScreenValue(screenValue.slice(0,screenValue.length-1));
+        } else {
+            setScreenValue(screenValue.slice(0, screenValue.length - 1));
         }
     }
 
-    const addSub = (symbol) =>{
-        setRest(false);
-        if(mode===0){
+    const addSub = (symbol) => {
+        setReset(false);
+        let tmpOPRStack = [...OPRStack];
+        if (mode === 0) {
             let tmpOPDStack = [...OPDStack];
-            if(OPR===""){
+            if (OPR === "") {
                 tmpOPDStack.push(parseFloat(screenValue));
-            }else{
-                OPR==="×"?tmpOPDStack.push(tmpOPDStack.pop()*parseFloat(screenValue)):parseFloat(screenValue)===0?setError(true):tmpOPDStack.push(tmpOPDStack.pop()/parseFloat(screenValue));
-
+            } else {
+                OPR === "×" ? tmpOPDStack.push(tmpOPDStack.pop() * parseFloat(screenValue)) : parseFloat(screenValue) === 0 ? setError(true) : tmpOPDStack.push(tmpOPDStack.pop() / parseFloat(screenValue));
             }
             setOPDStack(tmpOPDStack);
-
-            let tmpOPRStack = [...OPRStack];
             tmpOPRStack.push(symbol);
             setOPRStack(tmpOPRStack);
-
             setMode(1);
             setOPR("");
-        }else{
-            if(OPR!==""){
+        } else {
+            if (OPR !== "") {
                 setOPR("");
-            }else{
-                let tmpOPRStack = [...OPRStack];
-                tmpOPRStack[tmpOPRStack.length-1] = symbol;
-                setOPRStack(tmpOPRStack);
+                tmpOPRStack.push(symbol);
+            } else {
+                tmpOPRStack[tmpOPRStack.length - 1] = symbol;
             }
+            setOPRStack(tmpOPRStack);
         }
     }
 
     const multiDiv = (symbol) => {
-        setRest(false);
-        if(mode===0){
+        setReset(false);
+        if (mode === 0) {
             let tmpOPDStack = [...OPDStack];
-            if(OPR===""){
+            if (OPR === "") {
                 tmpOPDStack.push(parseFloat(screenValue));
-            }else{
-                OPR==="×"?tmpOPDStack.push(tmpOPDStack.pop()*parseFloat(screenValue)):parseFloat(screenValue)===0?setError(true):tmpOPDStack.push(tmpOPDStack.pop()/parseFloat(screenValue));
+            } else {
+                OPR === "×" ? tmpOPDStack.push(tmpOPDStack.pop() * parseFloat(screenValue)) : parseFloat(screenValue) === 0 ? setError(true) : tmpOPDStack.push(tmpOPDStack.pop() / parseFloat(screenValue));
             }
             setOPDStack(tmpOPDStack);
-
             setOPR(symbol);
             setMode(1);
-        }else{
+        } else {
             setOPR(symbol);
         }
     }
 
     const equl = () => {
-        setRest(true);
+        setReset(true);
         let tmpOPDStack;
         let tmpOPRStack = [...OPRStack];
-        if(mode===0){
-            if(OPR===""){
+        if (mode === 0) {
+            if (OPR === "") {
                 tmpOPDStack = [...OPDStack, parseFloat(screenValue)];
-            }else{
+            } else {
                 tmpOPDStack = [...OPDStack];
-                OPR==="×"?tmpOPDStack.push(tmpOPDStack.pop()*parseFloat(screenValue)):parseFloat(screenValue)===0?setError(true):tmpOPDStack.push(tmpOPDStack.pop()/parseFloat(screenValue));
+                OPR=== "×" ? tmpOPDStack.push(tmpOPDStack.pop() * parseFloat(screenValue)) : parseFloat(screenValue) === 0 ? setError(true) : tmpOPDStack.push(tmpOPDStack.pop() / parseFloat(screenValue));
             }
-        }else{
+        } else {
             tmpOPDStack = [...OPDStack];
         }
         const ans = calculate(tmpOPDStack, tmpOPRStack);
         setMode(0);
         setOPR("");
-        setScreenValue(ans.toString());
+        setScreenValue(ans.toFixed(4).toString());
         setOPRStack([]);
         setOPDStack([]);
     }
 
     const allClear = () => {
-        setRest(false);
+        setReset(false);
         setError(false);
         setMode(0);
         setOPR("");
@@ -129,72 +121,72 @@ const Calculator = () => {
     }
 
     const memoryStore = () => {
-        if(error) return;
+        if (error) return;
         setStoreNum(screenValue);
     }
 
     const memoryRecell = () => {
-        setRest(false);
+        setReset(false);
         setScreenValue(storeNum.toString());
         setMode(0);
     }
 
     const ln = () => {
-        setRest(false);
-        if(parseFloat(screenValue)<=0){
+        setReset(false);
+        if (parseFloat(screenValue) <= 0) {
             setError(true);
-        }else{
+        } else {
             let value =  Math.log(parseFloat(screenValue));
-            value = value.toString().slice(0,6);
+            value = value.toFixed(4).toString();
             setScreenValue(value);
             setOPR("");
             setOPRStack([]);
-            setOPDStack([]);   
-            setMode(0);         
+            setOPDStack([]);
+            setMode(0);
         }
     }
 
     const log = () => {
-        setRest(false);
-        if(parseFloat(screenValue)<=0){
+        setReset(false);
+        if (parseFloat(screenValue) <= 0) {
             setError(true);
-        }else{
+        } else {
             let value =  Math.log10(parseFloat(screenValue));
-            value = value.toString().slice(0,6);
+            value = value.toFixed(4).toString();
             setScreenValue(value);
             setOPR("");
             setOPRStack([]);
-            setOPDStack([]);   
-            setMode(0);  
+            setOPDStack([]);
+            setMode(0);
         }
     }
 
     const sin = () => {
-        setRest(false);
+        setReset(false);
         let value =  Math.sin(parseFloat(screenValue));
-        value = value.toString().slice(0,6);
+        value = value.toString().slice(0, 6);
         setScreenValue(value);
         setOPR("");
         setOPRStack([]);
-        setOPDStack([]);   
-        setMode(0);  
+        setOPDStack([]);
+        setMode(0);
     }
 
     const cos = () => {
-        setRest(false);
-        let value =  Math.sin(parseFloat(screenValue));
-        value = value.toString().slice(0,6);
-        setScreenValue(value); 
+        setReset(false);
+        let value =  Math.cos(parseFloat(screenValue));
+        value = value.toString().slice(0, 6);
+        setScreenValue(value);
         setOPR("");
         setOPRStack([]);
-        setOPDStack([]);   
-        setMode(0);         
+        setOPDStack([]);
+        setMode(0);
     }
 
-    return(
-        <div id="container">
+    return (
+    <div id="container">
       <div className="displayWrapper">
-        <input className="display" type="text" value={error?"錯誤":screenValue} disabled/>
+        <input className="display" type="text" value={error ? "錯誤" : screenValue} disabled/>
       </div>
       <div className="panelWrapper">
         <div className="row">
@@ -202,32 +194,32 @@ const Calculator = () => {
           <button className="gray" onClick={memoryRecell}>MR</button>
           <button className="gray" onClick={allClear}>AC</button>
           <button className="gray" onClick={backBtn}>🔙</button>
-          <button className="yellow OPR" onClick={(e)=>multiDiv(e.target.innerHTML)}>÷</button>
+          <button className="yellow OPR" onClick={(e) => multiDiv(e.target.innerHTML)}>÷</button>
         </div>
         <div className="row">
           <button className="gray" onClick={log}>log</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>7</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>8</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>9</button>
-          <button className="yellow OPR" onClick={(e)=>multiDiv(e.target.innerHTML)}>×</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>7</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>8</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>9</button>
+          <button className="yellow OPR" onClick={(e) => multiDiv(e.target.innerHTML)}>×</button>
         </div>
         <div className="row">
           <button className="gray" onClick={ln}>ln</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>4</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>5</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>6</button>
-          <button className="yellow OPR" onClick={(e)=>addSub(e.target.innerHTML)}>-</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>4</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>5</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>6</button>
+          <button className="yellow OPR" onClick={(e) => addSub(e.target.innerHTML)}>-</button>
         </div>
         <div className="row">
           <button className="gray" onClick={sin}>sin</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>1</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>2</button>
-          <button className="dark" onClick={(e)=>typeNum(e.target.innerHTML)}>3</button>
-          <button className="yellow OPR" onClick={(e)=>addSub(e.target.innerHTML)}>+</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>1</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>2</button>
+          <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>3</button>
+          <button className="yellow OPR" onClick={(e) => addSub(e.target.innerHTML)}>+</button>
         </div>
         <div className="row">
           <button className="gray" onClick={cos}>cos</button>
-          <button className="dark zero" onClick={(e)=>typeNum(e.target.innerHTML)}>0</button>
+          <button className="dark zero" onClick={(e) => typeNum(e.target.innerHTML)}>0</button>
           <button className="dark" onClick={typeDot}>.</button>
           <button className="yellow" id="equl" onClick={equl}>=</button>
         </div>

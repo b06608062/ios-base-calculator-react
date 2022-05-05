@@ -1,104 +1,119 @@
-#container{
-    width: 400px;
-    height: 480px;
-    background: black;
-    margin: 200px auto;
-    border-radius: 2%;
-  }
+#container {
+  width: 400px;
+  height: 480px;
+  background: black;
+  margin: 200px auto;
+  border-radius: 2%;
+}
+
+.displayWrapper {
+  width: 100%;
+  height: 16.6%;
+}
+
+.display {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  padding: 0;
+  border: 0;
+  font-size: 48px;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.panelWrapper {
+  width: 100%;
+  height: 83.3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
   
-  .displayWrapper{
-    width: 100%;
-    height: 16.6%;
-  }
+.row {
+  width: 100%;
+  height: 16.6%;
+  display: flex;
+  justify-content: space-around;
+}
   
-  .display{
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    color: white;
-    padding: 0;
-    border: 0;
-    font-size: 48px;
-    text-align: right;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.row>button {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  font-size: 48px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 0;
+  padding: 0;
+  text-align: center;
+}
   
-  .panelWrapper{
-    width: 100%;
-    height: 83.3%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
+.dark {
+  background-color: #606060;
+  color: white;
+}
   
-  .row{
-    width: 100%;
-    height: 16.6%;
-    display: flex;
-    justify-content: space-around;
-  }
+.yellow {
+  background-color: #d88f03;
+  color: white;
+}
   
-  .row > button{
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    font-size: 48px;
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-    border: 0;
-    padding: 0;
-    text-align: center;
-  }
+.gray {
+  background-color: #d4d4d4;
+  color: black;
+  font-size: 32px !important;
+}
+
+.gray:active {
+  animation-duration: 800ms;
+  animation-name: flash-gray;
+}
   
-  .dark{
-    background-color: #606060;
-    color:white;
-  }
+.zero {
+  width: 144px !important;
+  border-radius: 50px !important;
+}
   
-  .yellow{
+button:hover {
+  transform: scale(1.1);
+}
+
+.OPR:focus {
+  color: #d88f03;
+  background-color: white;
+}
+
+#equl:active {
+  animation-duration: 500ms;
+  animation-name: flash-yellow;
+}
+
+@keyframes flash-yellow {
+  0% {
     background-color: #d88f03;
-    color:white;
   }
-  
-  .gray{
+
+  25% {
+    background-color: rgb(214, 169, 84);
+  }
+
+  100% {
+    background-color: #d88f03;
+  }
+}
+
+@keyframes flash-gray {
+  0% {
     background-color: #d4d4d4;
-    color: black;
-    font-size: 32px !important;
   }
 
-  .gray:active{
-    animation-duration: 800ms;
-    animation-name: flash-gray;
-  }
-  
-  .zero{
-    width: 144px !important;
-    border-radius: 50px !important;
-  }
-  
-  button:hover{
-    transform: scale(1.1);
+  25% {
+    background-color: rgb(238, 237, 237);
   }
 
-  .OPR:focus{
-    color: #d88f03;
-    background-color: white;
+  100% {
+    background-color: #d4d4d4;
   }
-
-  #equl:active{
-    animation-duration: 500ms;
-    animation-name: flash-yellow;
-  }
-
-  @keyframes flash-yellow{
-    0% { background-color: #d88f03}
-    25% { background-color: rgb(214, 169, 84)}
-    100% { background-color: #d88f03 }
-  }
-
-  @keyframes flash-gray{
-    0% { background-color: #d4d4d4}
-    25% { background-color: rgb(238, 237, 237)}
-    100% { background-color: #d4d4d4 }
-  }
-
+}

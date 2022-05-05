@@ -1,9 +1,7 @@
-const calculate = (OPDStack, OPRStack)=>{
-    // console.log(OPDStack);
-    // console.log(OPRStack);
+const calculate = (OPDStack, OPRStack) => {
     let ans = OPDStack.shift();
-    while(OPDStack.length){
-        ans = OPRStack.shift()==="+"?ans+OPDStack.shift():ans-OPDStack.shift();
+    while (OPDStack.length) {
+        ans = OPRStack.shift() === "+" ? ans + OPDStack.shift() : ans - OPDStack.shift();
     }
     return ans;
 }
