@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Calculator.css';
-import calculate from '../util/calculate';
 
 const Calculator = () => {
     const [screenValue, setScreenValue] = useState("0");
@@ -102,7 +101,7 @@ const Calculator = () => {
         } else {
             tmpOPDStack = [...OPDStack];
         }
-        let ans = calculate(tmpOPDStack, tmpOPRStack);
+        let ans = evaluate(tmpOPDStack, tmpOPRStack);
         ans = parseInt(ans) - ans >= 0 ? ans : ans.toFixed(4);
         setMode(0);
         setOPR("");
@@ -182,6 +181,14 @@ const Calculator = () => {
         setOPRStack([]);
         setOPDStack([]);
         setMode(0);
+    }
+
+    const evaluate = (OPDStack, OPRStack) => {
+        let ans = OPDStack.shift();
+        while (OPDStack.length) {
+            ans = OPRStack.shift() === "+" ? ans + OPDStack.shift() : ans - OPDStack.shift();
+        }
+        return ans;
     }
 
     return (
