@@ -186,45 +186,45 @@ const Calculator = () => {
 
     return (
         <div id="container">
-        <div className="displayWrapper">
-            <input className="display" type="text" value={error ? "錯誤" : screenValue} disabled/>
-        </div>
-        <div className="panelWrapper">
-            <div className="row">
-            <button className="gray" onClick={memoryStore}>MS</button>
-            <button className="gray" onClick={memoryRecell}>MR</button>
-            <button className="gray" onClick={allClear}>AC</button>
-            <button className="gray" onClick={backBtn}>🔙</button>
-            <button className="yellow OPR" onClick={(e) => multiDiv(e.target.innerHTML)}>÷</button>
+            <div className="displayWrapper">
+                <input className="display" type="text" value={error ? "錯誤" : screenValue} disabled/>
             </div>
-            <div className="row">
-            <button className="gray" onClick={log}>log</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>7</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>8</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>9</button>
-            <button className="yellow OPR" onClick={(e) => multiDiv(e.target.innerHTML)}>×</button>
+            <div className="panelWrapper">
+                <div className="row">
+                    <button className="gray" onClick={memoryStore}>MS</button>
+                    <button className="gray" onClick={memoryRecell}>MR</button>
+                    <button className="gray" onClick={allClear}>AC</button>
+                    <button className="gray" onClick={backBtn}>🔙</button>
+                    <button className="yellow OPR" onClick={(e) => multiDiv(e.target.innerHTML)}>÷</button>
+                </div>
+                <div className="row">
+                    <button className="gray" onClick={log}>log</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>7</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>8</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>9</button>
+                    <button className="yellow OPR" onClick={(e) => multiDiv(e.target.innerHTML)}>×</button>
+                </div>
+                <div className="row">
+                    <button className="gray" onClick={ln}>ln</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>4</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>5</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>6</button>
+                    <button className="yellow OPR" onClick={(e) => addSub(e.target.innerHTML)}>-</button>
+                </div>
+                <div className="row">
+                    <button className="gray" onClick={sin}>sin</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>1</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>2</button>
+                    <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>3</button>
+                    <button className="yellow OPR" onClick={(e) => addSub(e.target.innerHTML)}>+</button>
+                </div>
+                <div className="row">
+                    <button className="gray" onClick={cos}>cos</button>
+                    <button className="dark zero" onClick={(e) => typeNum(e.target.innerHTML)}>0</button>
+                    <button className="dark" onClick={typeDot}>.</button>
+                    <button className="yellow" id="equl" onClick={equl}>=</button>
+                </div>
             </div>
-            <div className="row">
-            <button className="gray" onClick={ln}>ln</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>4</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>5</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>6</button>
-            <button className="yellow OPR" onClick={(e) => addSub(e.target.innerHTML)}>-</button>
-            </div>
-            <div className="row">
-            <button className="gray" onClick={sin}>sin</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>1</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>2</button>
-            <button className="dark" onClick={(e) => typeNum(e.target.innerHTML)}>3</button>
-            <button className="yellow OPR" onClick={(e) => addSub(e.target.innerHTML)}>+</button>
-            </div>
-            <div className="row">
-            <button className="gray" onClick={cos}>cos</button>
-            <button className="dark zero" onClick={(e) => typeNum(e.target.innerHTML)}>0</button>
-            <button className="dark" onClick={typeDot}>.</button>
-            <button className="yellow" id="equl" onClick={equl}>=</button>
-            </div>
-        </div>
         </div>
     );
 }
