@@ -234,6 +234,6 @@ const Calculator = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Calculator;
